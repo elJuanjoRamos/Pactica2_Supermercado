@@ -5,8 +5,8 @@ var bodyParser = require('body-parser');
 //IMPORTAR ROUTES
 var authRoute = require('./app/routes/authenticate.routes');
 var usuarioRoute = require('./app/routes/usuario.routes');
-
-//var service = require('./services');
+var proveedorRoute = require('./app/routes/proveedor.routes')
+    //var service = require('./services');
 var app = express();
 var port = 3000;
 var uri = '/api/v1/';
@@ -33,6 +33,7 @@ app.use(function(req, res, next) {
 
 app.use('/', authRoute);
 app.use(uri, usuarioRoute);
+app.use(uri, proveedorRoute);
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

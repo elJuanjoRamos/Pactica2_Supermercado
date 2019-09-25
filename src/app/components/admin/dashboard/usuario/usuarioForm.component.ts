@@ -88,6 +88,5 @@ import { User } from '../../../../api/models/usuario';
           }
         });
       }
-
   }
 }

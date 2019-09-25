@@ -57,7 +57,7 @@
                                                 <td>{{p.username}}</td>
                                                 <td>{{p.pass}}</td>
                                                 <td *ngIf="p.Rol_idRol ==1">
-                                                    <span class="label label-warning">Administrador</span>
+                                                    <span class="label label-info">Administrador</span>
                                                 </td>
                                                 <td *ngIf="p.Rol_idRol ==2">
                                                     <span class="label label-success">Asistente</span>
@@ -66,10 +66,10 @@
                                                     <span class="label label-warning">Cliente</span>
                                                 </td>
                                                 <td class="text-center">
-                                                    <button [routerLink]="['/dashboard/admin/user/', p.idUsuario]" type="button" class="btn btn-sm btn-default">
+                                                    <button *ngIf="p.Rol_idRol !=1" [routerLink]="['/dashboard/admin/user/', p.idUsuario]" type="button" class="btn btn-sm btn-default">
                                                             <em class="fa fa-pencil"></em>
                                                          </button>
-                                                    <button (click)="borrar(p)" type="button" class="btn btn-sm btn-danger">
+                                                    <button *ngIf="p.Rol_idRol !=1" (click)="borrar(p)" type="button" class="btn btn-sm btn-danger">
                                                             <em class="fa fa-trash"></em>
                                                          </button>
 

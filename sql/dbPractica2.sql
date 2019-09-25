@@ -144,3 +144,15 @@ UPDATE Usuario SET nombre = n, apellido = a, username = u, pass = p, Rol_idRol =
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE actualizar_proveedor (IN n VARCHAR(45), IN d VARCHAR(45), 
+IN t VARCHAR(45), IN id INT)
+BEGIN
+
+UPDATE Proveedor SET nombre = n, direccion = d, telefono = t WHERE idProveedor = id; 
+
+END //
+DELIMITER ;
+
+
+

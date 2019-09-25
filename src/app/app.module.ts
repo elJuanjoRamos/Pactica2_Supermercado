@@ -18,11 +18,13 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { NavBarComponent } from './components/admin/navbar/navbar.component';
 import { UsuarioComponent } from './components/admin/dashboard/usuario/usuario.component';
 import { AdminComponent } from './components/admin/dashboard/admin/admin.component';
+import { UsuarioFormComponent } from './components/admin/dashboard/usuario/usuarioForm.component';
+import { ProveedorComponent } from './components/admin/dashboard/proveedor/proveedor.component';
 
 //SERVICIOS
 import { UsuarioService } from './services/usuario.service';
 import { AuthenticationService } from './services/authentication.service';
-import { UsuarioFormComponent } from './components/admin/dashboard/usuario/usuarioForm.component';
+import { ProveedorService } from './services/proveedor.service';
 
 //AUXILIAR
 import { HttpClientModule } from '@angular/common/http';
@@ -42,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
 
     UsuarioComponent,
     AdminComponent,
-    UsuarioFormComponent
+    UsuarioFormComponent,
+    ProveedorComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     UsuarioService,
-    AuthenticationService
+    AuthenticationService,
+    ProveedorService
  
   ],
   bootstrap: [AppComponent]
