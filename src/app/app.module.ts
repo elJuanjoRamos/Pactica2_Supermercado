@@ -20,15 +20,18 @@ import { UsuarioComponent } from './components/admin/dashboard/usuario/usuario.c
 import { AdminComponent } from './components/admin/dashboard/admin/admin.component';
 import { UsuarioFormComponent } from './components/admin/dashboard/usuario/usuarioForm.component';
 import { ProveedorComponent } from './components/admin/dashboard/proveedor/proveedor.component';
+import { ProductoComponent } from './components/admin/dashboard/producto/producto.component';
+import { ProductoFormComponent } from './components/admin/dashboard/producto/productoForm.component';
+
 
 //SERVICIOS
 import { UsuarioService } from './services/usuario.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ProveedorService } from './services/proveedor.service';
+import { ProductoService } from './services/producto.service';
 
 //AUXILIAR
 import { HttpClientModule } from '@angular/common/http';
-
 
 @NgModule({
   declarations: [
@@ -45,7 +48,9 @@ import { HttpClientModule } from '@angular/common/http';
     UsuarioComponent,
     AdminComponent,
     UsuarioFormComponent,
-    ProveedorComponent
+    ProveedorComponent,
+    ProductoComponent,
+    ProductoFormComponent
   ],
   imports: [
     BrowserModule,
@@ -57,8 +62,8 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     UsuarioService,
     AuthenticationService,
-    ProveedorService
- 
+    ProveedorService,
+    ProductoService
   ],
   bootstrap: [AppComponent]
 })

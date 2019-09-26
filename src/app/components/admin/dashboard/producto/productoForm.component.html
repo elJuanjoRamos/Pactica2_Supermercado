@@ -1,0 +1,134 @@
+<div class="content-wrapper">
+    <div class="content-heading">Producto {{nombreProducto}}</div>
+    <div *ngIf="loginForm">
+        <div role="alert" *ngIf="validar" class="alert alert-{{tipo}}">
+            <strong>{{texto}}</strong></div>
+        <form [formGroup]="loginForm" role="form" data-parsley-validate="" novalidate="" class="panel">
+            <div role="tabpanel">
+                <ul class="nav nav-tabs nav-justified">
+                    <li role="presentation" class="active"><a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Datos del Producto</a>
+                    </li>
+                    <li role="presentation"><a href="#seo" aria-controls="seo" role="tab" data-toggle="tab">Proveedores</a>
+                    </li>
+
+                </ul>
+                <div class="tab-content">
+                    <div id="edit" role="tabpanel" class="tab-pane active">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Nombre:</label>
+                                <div class="col-md-10">
+                                    <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+                                    <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                                        <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Descripcion:</label>
+                                <div class="col-md-10">
+                                    <input type="text" formControlName="descripcion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }" />
+                                    <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+                                        <div *ngIf="f.descripcion.errors.required">Descripcio es requerida</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Precio Venta:</label>
+                                <div class="col-md-10">
+                                    <input type="text" formControlName="precioVenta" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.precioVenta.errors }" />
+                                    <div *ngIf="submitted && f.precioVenta.errors" class="invalid-feedback">
+                                        <div *ngIf="f.precioVenta.errors.required">Precio de venta es requerido</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Cantidad:</label>
+                                <div class="col-md-10">
+                                    <input type="number" min="0" max="99999" formControlName="cantidad" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cantidad.errors }" />
+                                    <div *ngIf="submitted && f.cantidad.errors" class="invalid-feedback">
+                                        <div *ngIf="f.cantidad.errors.required">Cantidad es requerida</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">URL imagen :</label>
+                                <div class="col-md-10">
+                                    <input type="text" formControlName="img" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.img.errors }" />
+                                    <div *ngIf="submitted && f.img.errors" class="invalid-feedback">
+                                        <div *ngIf="f.img.errors.required">URL es requerida</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div id="seo" role="tabpanel" class="tab-pane">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Proveedor(es)</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <select style="width:100%" id="selectB" class="form-control" data-live-search="true">
+                                                            <option *ngFor="let p of proveedor" value="{{p.idProveedor}}">{{p.nombre}}</option>
+                                                          </select>
+                                        <span class="input-group-btn">
+                                                                <button type="button" (click)="agregar()" class="btn btn-primary">Agregar</button>
+                                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="bg-gray-lighter">
+                                        <tr>
+                                            <th class="wd-xs">ID</th>
+                                            <th>Nombre</th>
+                                            <th>Direccion</th>
+                                            <th>Telefono</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let p of proveedores ">
+                                            <td class="order-item-name">{{p.idProveedor}}</td>
+                                            <td class="order-item-name">{{p.nombre}}</td>
+                                            <td class="order-qty">{{p.direccion}}</td>
+                                            <td class="order-tax">{{p.telefono}}</td>
+                                            <td>
+                                                <button (click)="eliminar(p)" class="btn btn-sm btn-danger" type="button">
+                                                                                                                            <em class="fa fa-trash"></em>
+                                                                                                                      </button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="text-right mt-lg">
+        <button (click)="regresar()" type="button" class="btn btn-warning">Cancelar</button>
+
+        <button type="button" (click)="onSubmit()" [disabled]="loading" class="btn btn-success">
+                Guardar
+                <!--[disabled]="loading"-->
+        </button>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+    </div>
+</div>

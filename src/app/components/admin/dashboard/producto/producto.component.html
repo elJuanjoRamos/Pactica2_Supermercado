@@ -1,11 +1,11 @@
 <div class="content-wrapper">
     <div class="pull-right">
-        <button type="button" [routerLink]="['/dashboard/admin/user/nuevo']" class="btn btn-labeled btn-square btn-info">
-                                        <span class="btn-label"><i class="fa fa-plus"></i>
-                                       </span>Nuevo Usuario</button>
+        <button type="button" [routerLink]="['/dashboard/admin/producto/nuevo']" class="btn btn-labeled btn-square btn-info">
+                                            <span class="btn-label"><i class="fa fa-plus"></i>
+                                           </span>Nuevo Producto</button>
     </div>
-    <h3>Usuarios
-        <small>Lista de usuarios registrados en el sistema.</small>
+    <h3>Productos
+        <small>Lista de productos registrados en el sistema.</small>
     </h3>
     <div class="container-fluid">
         <!-- START DATATABLE 1-->
@@ -14,7 +14,7 @@
 
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Usuarios registrados |
+                    <div class="panel-heading">Productos registrados |
                         <small>Obtenidos desde la base de datos</small>
                     </div>
                     <div class="panel-body">
@@ -31,16 +31,16 @@
                                                 <strong>Nombre</strong>
                                             </th>
                                             <th>
-                                                <strong>Apellido</strong>
+                                                <strong>Cantidad</strong>
                                             </th>
                                             <th>
-                                                <strong>Username</strong>
+                                                <strong>Precio Venta</strong>
                                             </th>
                                             <th>
-                                                <strong>Password</strong>
+                                                <strong>Descripcion</strong>
                                             </th>
                                             <th>
-                                                <strong>Rol</strong>
+                                                <strong>Estado</strong>
                                             </th>
                                             <th>
                                                 <strong>Opciones</strong>
@@ -50,28 +50,25 @@
                                     <tbody>
                                         <tr>
 
-                                            <tr *ngFor="let p of usuario">
-                                                <td>{{p.idUsuario}}</td>
+                                            <tr *ngFor="let p of productos">
+                                                <td>{{p.idProducto}}</td>
                                                 <td>{{p.nombre}}</td>
-                                                <td>{{p.apellido}}</td>
-                                                <td>{{p.username}}</td>
-                                                <td>{{p.pass}}</td>
-                                                <td *ngIf="p.Rol_idRol ==1">
-                                                    <span class="label label-info">Administrador</span>
+                                                <td>{{p.cantidad}}</td>
+                                                <td>{{p.precioVenta}}</td>
+                                                <td>{{p.descripcion}}</td>
+                                                <td *ngIf="p.cantidad ==0">
+                                                    <span class="label label-danger">Agotado</span>
                                                 </td>
-                                                <td *ngIf="p.Rol_idRol ==2">
-                                                    <span class="label label-success">Asistente</span>
-                                                </td>
-                                                <td *ngIf="p.Rol_idRol ==3">
-                                                    <span class="label label-warning">Cliente</span>
+                                                <td *ngIf="p.cantidad !=0">
+                                                    <span class="label label-success">En existencias</span>
                                                 </td>
                                                 <td class="text-center">
-                                                    <button *ngIf="p.Rol_idRol !=1" [routerLink]="['/dashboard/admin/user/', p.idUsuario]" type="button" class="btn btn-sm btn-default">
-                                                            <em class="fa fa-pencil"></em>
-                                                         </button>
-                                                    <button *ngIf="p.Rol_idRol !=1" (click)="borrar(p)" type="button" class="btn btn-sm btn-danger">
-                                                            <em class="fa fa-trash"></em>
-                                                         </button>
+                                                    <button [routerLink]="['/dashboard/admin/producto/', p.idProducto]" type="button" class="btn btn-sm btn-default">
+                                                                <em class="fa fa-pencil"></em>
+                                                             </button>
+                                                    <button (click)="borrar(p.idProducto)" type="button" class="btn btn-sm btn-danger">
+                                                                <em class="fa fa-trash"></em>
+                                                             </button>
 
                                                 </td>
                                             </tr>

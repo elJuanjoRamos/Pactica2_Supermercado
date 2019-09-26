@@ -19,11 +19,11 @@ CREATE TABLE IF NOT EXISTS `Producto` (
   `idProducto` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   `descripcion` VARCHAR(45) NULL,
-  `precioVenta` DECIMAL(20) NULL,
+  `img` VARCHAR(45) NULL,
+  `precioVenta` DOUBLE NULL,
   `cantidad` INT NULL,
   PRIMARY KEY (`idProducto`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Proveedor`
@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `ProveedorProducto` (
   CONSTRAINT `fk_ProveedorProducto_Producto1`
     FOREIGN KEY (`Producto_idProducto`)
     REFERENCES `Producto` (`idProducto`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -152,7 +152,31 @@ BEGIN
 UPDATE Proveedor SET nombre = n, direccion = d, telefono = t WHERE idProveedor = id; 
 
 END //
-DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE insert_producto (IN n VARCHAR(45), IN c INT, IN i VARCHAR(45),
+IN p DOUBLE, IN d VARCHAR(45))
+BEGIN
+INSERT INTO Producto(nombre, descripcion, img, precioVenta, cantidad) VALUES(n,d,i,p,c) ;
+END //
+
+DELIMITER //
+CREATE PROCEDURE actualizar_producto (IN n VARCHAR(45), IN c INT, IN i VARCHAR(45),
+IN p DOUBLE, IN d VARCHAR(45), IN id INT)
+BEGIN
+UPDATE Producto SET nombre =n, descripcion =d, cantidad =c, precioVenta = p, img = i where idProducto = id ;
+END //
 
 
+DELIMITER //
+CREATE PROCEDURE insert_producto_proveedor (IN c INT)
+BEGIN
+INSERT INTO ProveedorProducto(Proveedor_idProveedor, Producto_idProducto) VALUES(c, (SELECT max(idProducto) FROM Producto)) ;
+END //
 
+
+DELIMITER //
+CREATE PROCEDURE insert_producto_proveedor_agregado (IN c INT, IN p INT)
+BEGIN
+INSERT INTO ProveedorProducto(Proveedor_idProveedor, Producto_idProducto) VALUES(c, p) ;
+END //

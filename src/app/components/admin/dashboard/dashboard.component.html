@@ -15,14 +15,14 @@
                                 <!-- User picture-->
                                 <div class="user-block-picture">
                                     <div class="user-block-status">
-                                        <img src="img/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                                        <img src="assets/img/user.png" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
                                         <div class="circle circle-success circle-lg"></div>
                                     </div>
                                 </div>
                                 <!-- Name and Job-->
                                 <div class="user-block-info">
-                                    <span class="user-block-name">Hello, {{usuario.nombre}}</span>
-                                    <span class="user-block-role">Designer</span>
+                                    <span class="user-block-name">Hola, {{usuario.nombre}}</span>
+                                    <span class="user-block-role">Administrador</span>
                                 </div>
                             </div>
                         </div>
@@ -40,40 +40,25 @@
                         </a>
 
                     </li>
-                    <li class=" ">
-                        <a href="widgets.html" title="Widgets">
-                            <div class="pull-right label label-success">30</div>
-                            <em class="icon-grid"></em>
-                            <span data-localize="sidebar.nav.WIDGETS">Widgets</span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a href="#layout" title="Layouts" data-toggle="collapse">
-                            <em class="icon-layers"></em>
-                            <span>Layouts</span>
-                        </a>
-                        <ul id="layout" class="nav sidebar-subnav collapse">
-                            <li class="sidebar-subnav-header">Layouts</li>
-                            <li class=" ">
-                                <a href="dashboard_h.html" title="Horizontal">
-                                    <span>Horizontal</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="nav-heading ">
                         <span data-localize="sidebar.heading.COMPONENTS">Components</span>
                     </li>
                     <li class=" ">
                         <a [routerLink]="['admin/user']" title="Elements" data-toggle="collapse">
-                            <em class="icon-chemistry"></em>
+                            <em class="icon-user"></em>
                             <span data-localize="sidebar.nav.element.ELEMENTS">Usuarios</span>
                         </a>
                     </li>
                     <li class=" ">
                         <a [routerLink]="['admin/provider/gestion']" title="Elements" data-toggle="collapse">
-                            <em class="icon-chemistry"></em>
+                            <em class="icon-people"></em>
                             <span data-localize="sidebar.nav.element.ELEMENTS">Proveedor</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a [routerLink]="['admin/producto']" title="Elements" data-toggle="collapse">
+                            <em class="icon-social-dropbox"></em>
+                            <span data-localize="sidebar.nav.element.ELEMENTS">Produtos</span>
                         </a>
                     </li>
                 </ul>

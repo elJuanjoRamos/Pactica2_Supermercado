@@ -15,11 +15,27 @@ CALL insert_user("fs", "s", "re", "re", 2);
 CALL insert_user("fds", "fsd", "fsd", "fd", 3);
 
 
+
 -- -----------------------------------------------------
 -- Table `Proveedor`
 -- -----------------------------------------------------
 CALL insert_proveedor("prov1","prov1","prov1");
 
-select * from usuario
 
+-- -----------------------------------------------------
+-- Table `Producto`
+-- -----------------------------------------------------
+CALL insert_producto("a",0, "img", 5, "dafdsa");
+
+SELECT * FROM PRODUCTO
+
+
+-- -----------------------------------------------------
+-- Table `Proveedor Producto`
+-- -----------------------------------------------------
+CALL insert_producto_proveedor(3);
+
+SELECT * FROM proveedorProducto
+
+INSERT INTO ProveedorProducto(Proveedor_idProveedor, Producto_idProducto) VALUES(1, 23) ;
 
